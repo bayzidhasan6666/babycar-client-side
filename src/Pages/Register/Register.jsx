@@ -1,7 +1,16 @@
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import app from '../../firebase/firebase.config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const auth = getAuth(app);
 
 const Register = () => {
+  const [error, setError] = useState('');
+  const [show, setShow] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,8 +34,26 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add registration logic here
-    // You can use the form values for user registration
+    setError('');
+
+    // Retrieve form values
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const photoURL = e.target.photoURL.value;
+
+    // Register the user with Firebase
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        setError('');
+        e.target.reset();
+        toast.success('User has been created successfully');
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -51,7 +78,7 @@ const Register = () => {
                 required
                 value={name}
                 onChange={handleNameChange}
-                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900 py-2 border border-teal-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900 py-2 border border-teal-300 placeholder-gray-500  rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Name"
               />
             </div>
@@ -62,30 +89,48 @@ const Register = () => {
               <input
                 id="email-address"
                 name="email"
-                type="email"
+                type="text"
                 autoComplete="email"
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-teal-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-teal-300 placeholder-gray-500  focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={password}
-                onChange={handlePasswordChange}
-                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-purple-500 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
+            <div className="flex justify-around items-center">
+              {' '}
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type={show ? 'text' : 'password'}
+                  autoComplete="new-password"
+                  required
+                  value={password}
+                  onChange={handlePasswordChange}
+                  className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-purple-500 placeholder-gray-500  focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="flex items-center">
+                <input
+                  onClick={() => setShow(!show)}
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-purple-600 rounded"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2 block py-1 font-light text-sm text-purple-500"
+                >
+                  Remember me
+                </label>
+              </div>
             </div>
             <div>
               <label htmlFor="photo-url" className="sr-only">
@@ -96,10 +141,9 @@ const Register = () => {
                 name="photoURL"
                 type="url"
                 autoComplete="url"
-                required
                 value={photoURL}
                 onChange={handlePhotoURLChange}
-                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-purple-500 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 bg-gray-900  py-2 border border-purple-500 placeholder-gray-500  rounded-b-md focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                 placeholder="Photo URL"
               />
             </div>
@@ -123,6 +167,7 @@ const Register = () => {
           </p>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -8,7 +8,9 @@ const App = () => {
     <div>
       <div>
         <Navbar></Navbar>
-        <Outlet></Outlet>
+        <div className="md:min-h-[calc(100vh-360px)] bg-gray-900 text-gray-400 py-10">
+          <Outlet />
+        </div>
         <Footer></Footer>
       </div>
     </div>

@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from '../../../assets/logo.png';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -52,7 +58,7 @@ const Navbar = () => {
                 >
                   All Toys
                 </Link>
-                {loggedIn && (
+                {user && (
                   <>
                     <Link
                       to="/mytoys"
@@ -78,8 +84,8 @@ const Navbar = () => {
             </div>
           </div>
           <div className="sm:block sm:ml-6">
-            {loggedIn ? (
-              <div className="relative group">
+            {user ? (
+              <div onClick={handleLogOut} className="relative group">
                 <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Logout
                 </button>
@@ -109,7 +115,7 @@ const Navbar = () => {
             >
               All Toys
             </Link>
-            {loggedIn && (
+            {user && (
               <>
                 <Link
                   to="/mytoys"
