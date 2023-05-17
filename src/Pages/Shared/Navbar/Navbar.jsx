@@ -6,22 +6,9 @@ import logo from '../../../assets/logo.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleLogin = () => {
-    // Logic for handling login
-    setLoggedIn(true);
-    setUsername('John Doe'); // Replace with the actual username
-  };
-
-  const handleLogout = () => {
-    // Logic for handling logout
-    setLoggedIn(false);
-    setUsername('');
   };
 
   return (
@@ -93,43 +80,16 @@ const Navbar = () => {
           <div className="sm:block sm:ml-6">
             {loggedIn ? (
               <div className="relative group">
-                <button
-                  className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  id="user-menu"
-                  aria-haspopup="true"
-                  onClick={handleLogout}
-                >
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="/path/to/profile-picture.jpg" // Replace with the actual profile picture path
-                    alt="Profile Picture"
-                  />
+                <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  Logout
                 </button>
-                <div
-                  className="opacity-0 invisible absolute z-10 bg-white text-gray-800 rounded-md group-hover:opacity-100 group-hover:visible"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu"
-                >
-                  <div className="py-1" role="none">
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 text-sm hover:bg-gray-200"
-                      role="menuitem"
-                    >
-                      {username}
-                    </Link>
-                  </div>
-                </div>
               </div>
             ) : (
-              <button
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                onClick={handleLogin}
-              >
-                Login
-              </button>
+              <Link to={'/login'}>
+                <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  Login
+                </button>
+              </Link>
             )}
           </div>
         </div>

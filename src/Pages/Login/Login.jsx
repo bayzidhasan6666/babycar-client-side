@@ -41,7 +41,7 @@ const Login = () => {
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-teal-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block bg-gray-900  w-full px-3 py-2 border border-teal-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -57,7 +57,7 @@ const Login = () => {
                 required
                 value={password}
                 onChange={handlePasswordChange}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-purple-500 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block bg-gray-900  w-full px-3 py-2 border border-purple-500 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -89,7 +89,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all"
+              className="group relative w-full flex justify-center py-2 px-4  border border-transparent text-sm font-medium rounded-md text-white border-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg
@@ -113,7 +113,7 @@ const Login = () => {
         <div>
           <p className="text-teal-400">
             No Account?{' '}
-            <Link to={'/register'}>
+            <Link to={'/signUp'}>
               <span className="link text-purple-500">Create One Here</span>
             </Link>
           </p>
