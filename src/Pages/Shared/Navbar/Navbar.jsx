@@ -18,7 +18,7 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <nav className="bg-gray-800">
+    <nav className="border-b border-teal-900">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -36,12 +36,14 @@ const Navbar = () => {
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-white text-lg font-semibold">
-                <img
-                  src={logo} // Replace with your logo image path
-                  alt="Website Logo"
-                  className="h-8 w-auto"
-                />
+              <Link
+                to="/"
+                className="text-white text-lg font-semibold flex items-center"
+              >
+                <img src={logo} alt="Website Logo" className="h-8 w-auto" />
+                <button className="btn-ghost rounded px-2 font-mono">
+                  BabyCar
+                </button>
               </Link>
             </div>
             <div className="hidden sm:block sm:ml-6">
@@ -86,13 +88,13 @@ const Navbar = () => {
           <div className="sm:block sm:ml-6">
             {user ? (
               <div onClick={handleLogOut} className="relative group">
-                <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <button className="text-purple-400 border border-purple-400 hover:text-purple-600  px-3 py-2 rounded-md text-sm font-medium">
                   Logout
                 </button>
               </div>
             ) : (
               <Link to={'/login'}>
-                <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                <button className="border border-teal-500 text-teal-500 hover:text-teal-600  px-3 py-2 rounded-md text-sm font-medium">
                   Login
                 </button>
               </Link>

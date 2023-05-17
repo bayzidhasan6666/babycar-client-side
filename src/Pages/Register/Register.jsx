@@ -1,11 +1,18 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+} from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import app from '../../firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const Register = () => {
   const [error, setError] = useState('');
@@ -53,6 +60,20 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        // console.log(loggedInUser);
+        setUser(loggedInUser);
+        toast.success('User logged in successful');
+        navigate(from);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -165,6 +186,20 @@ const Register = () => {
               Log in here
             </Link>
           </p>
+        </div>
+        <div className="flex justify-center space-x-4">
+          <button
+            className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-teal-500 hover:bg-teal-500 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            onClick={handleGoogleSignIn}
+          >
+            <FaGoogle className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-blue-600 transition-all  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <FaFacebook className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-purple-600 transition-all  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            <FaGithub className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
         </div>
       </div>
       <ToastContainer />

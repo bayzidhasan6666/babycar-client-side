@@ -1,7 +1,91 @@
-import React from 'react';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaPinterest,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  return <div></div>;
+  return (
+    <footer className="border-t border-teal-900 text-white py-10">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap justify-between">
+          <div className="w-full md:w-1/4">
+            <h3 className="text-xl font-bold mb-4">Baby Car</h3>
+            <p className="text-gray-400">
+              Welcome to Baby Car Website, your ultimate destination for all
+              things related to baby cars. Explore our collection of safe and
+              stylish cars for your little ones.
+            </p>
+            <div className="flex items-center space-x-4 mt-4">
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaFacebook size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaInstagram size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaTwitter size={24} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white">
+                <FaPinterest size={24} />
+              </a>
+            </div>
+          </div>
+          <div className="w-full md:w-1/4">
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="text-gray-400">
+              <li className="mb-2">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/about">About Us</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/products">Toys</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/contact">Contact Us</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="w-full md:w-1/4">
+            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+            <ul>
+              <li className="flex items-center gap-2 mt-2">
+                <span className="icon">
+                  <FaMapMarkerAlt className="h-6 w-6" />
+                </span>
+                123 Main Street, City, State Zip
+              </li>
+              <li className="flex items-center gap-2 mt-2">
+                <span className="icon">
+                  <FaPhoneAlt className="h-5 w-6" />
+                </span>
+                1-800-123-4567
+              </li>
+              <li className="flex items-center gap-2 mt-2">
+                <span className="icon">
+                  <FaEnvelope className="w-6 h-5" />
+                </span>
+                <a href="mailto:info@example.com">info@example.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="text-center mt-8">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} Baby Car Website. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

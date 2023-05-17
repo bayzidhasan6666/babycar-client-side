@@ -3,13 +3,12 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
 } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import app from '../../firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
-import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { FaGoogle, FaGithub, FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -47,12 +46,8 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const loggedUser = result.user;
-        // console.log(loggedUser);
-        if (!loggedUser.emailVerified) {
-          ('');
-        }
         setUser(loggedUser);
-        form.reset(); // Reset the form
+        form.reset(); // reset the form
         toast.success('User logged in successful');
         setError('');
         navigate(from);
@@ -66,29 +61,12 @@ const Login = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedInUser = result.user;
-        // console.log(loggedInUser);
         setUser(loggedInUser);
         toast.success('User logged in successful');
         navigate(from);
       })
       .catch((error) => {
         console.log(error);
-      });
-  };
-
-  const handleResetPassword = (e) => {
-    const email = emailRef.current.value;
-    if (!email) {
-      toast.warning('Please provide your email address to reset password');
-      return;
-    }
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.warning('Please check your email');
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(error.message);
       });
   };
 
@@ -153,10 +131,7 @@ const Login = () => {
             </div>
 
             <div className="text-sm">
-              <Link
-                onClick={handleResetPassword}
-                className="link font-light text-red-500 hover:text-red-600"
-              >
+              <Link className="link font-light text-red-500 hover:text-red-600">
                 Forgot your password?
               </Link>
             </div>
@@ -186,18 +161,6 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className="flex justify-center space-x-4">
-          <button
-            className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            onClick={handleGoogleSignIn}
-          >
-            <FaGoogle className="h-5 w-5 text-white group-hover:text-white" />
-          </button>
-          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-            <FaGithub className="h-5 w-5 text-white group-hover:text-white" />
-          </button>
-        </div>
-
         <div>
           <p className="text-teal-400">
             No Account?{' '}
@@ -205,6 +168,20 @@ const Login = () => {
               <span className="link text-purple-500">Create One Here</span>
             </Link>
           </p>
+        </div>
+        <div className="flex justify-center space-x-4">
+          <button
+            className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-teal-500 hover:bg-teal-500 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            onClick={handleGoogleSignIn}
+          >
+            <FaGoogle className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-blue-600 transition-all  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <FaFacebook className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-purple-600 transition-all  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            <FaGithub className="h-5 w-5 text-white group-hover:text-white" />
+          </button>
         </div>
       </div>
       <ToastContainer></ToastContainer>
