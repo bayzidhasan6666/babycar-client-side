@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import app from '../../firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
 import { FaGoogle, FaGithub, FaFacebook } from 'react-icons/fa';
+import useTitle from '../../PageTitle/useTitle';
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -18,7 +19,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
-
+  useTitle('Login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
