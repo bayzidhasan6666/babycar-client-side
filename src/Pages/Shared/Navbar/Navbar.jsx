@@ -85,7 +85,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="sm:block sm:ml-6">
+          <div className=" flex items-center gap-2">
             {user ? (
               <div onClick={handleLogOut} className="relative group">
                 <button className="text-purple-400 border border-purple-400 hover:text-purple-600  px-3 py-2 rounded-md text-sm font-medium">
@@ -98,6 +98,37 @@ const Navbar = () => {
                   Login
                 </button>
               </Link>
+            )}
+            {user && (
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      title={
+                        user.displayName ? user.displayName : 'no name found'
+                      }
+                      src={user.photoURL ? user.photoURL : ''}
+                    />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a>About</a>
+                  </li>
+                </ul>
+              </div>
             )}
           </div>
         </div>

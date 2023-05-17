@@ -48,7 +48,8 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         setUser(loggedUser);
-        form.reset(); // reset the form
+        console.log(loggedUser);
+        form.reset();
         toast.success('User logged in successful');
         setError('');
         navigate(from);
@@ -63,6 +64,7 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         setUser(loggedInUser);
+        console.log(loggedInUser);
         toast.success('User logged in successful');
         navigate(from);
       })
