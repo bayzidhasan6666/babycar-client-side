@@ -22,7 +22,7 @@ const Banner = () => {
           <div className="carousel-item">
             <img
               className="h-96 w-full lg:h-[550px] "
-              src="https://www.kotaku.com.au/wp-content/uploads/sites/3/2017/06/27/usartpvxknv8ccbkbnqp.jpg?q=65&w=1280"
+              src="https://files.vanceai.com/api/v2/preview?web=vanceai&guest_token_v2=af16e142360b10201aadab263248d4aa&trans_id=e0b5a735f22aff7c14abaa064a9a52bd"
               alt="Banner 1"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-2 w-96 mx-auto">
@@ -48,7 +48,7 @@ const Banner = () => {
           <div className="carousel-item">
             <img
               className="h-96 w-full lg:h-[550px]"
-              src="https://img.freepik.com/premium-photo/lots-toy-cars-beige-background-banner-with-place-text-toy-store_528985-1025.jpg?w=900"
+              src="https://files.vanceai.com/api/v2/preview?web=vanceai&guest_token_v2=af16e142360b10201aadab263248d4aa&trans_id=476f2e07394c0c9e2eaa84831acec704"
               alt="Banner 2"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-2 w-96 mx-auto">
@@ -74,7 +74,7 @@ const Banner = () => {
           <div className="carousel-item">
             <img
               className="h-96 w-full lg:h-[550px]"
-              src="https://c.ndtvimg.com/2021-12/oq1uk2ng_car_625x300_30_December_21.jpg"
+              src="https://images.unsplash.com/photo-1590504263777-ee53135bdbdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1041&q=80"
               alt="Banner 3"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-2 w-96 mx-auto">
