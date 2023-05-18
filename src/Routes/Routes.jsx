@@ -6,6 +6,7 @@ import Register from '../Pages/Register/Register';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import Blog from '../Pages/Blog/Blog';
 import AllToys from '../Pages/AllToys/AllToys';
+import ShopByCategory from '../Pages/Home/ShobByCategory/ShopByCategory';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/allToys',
         element: <AllToys></AllToys>,
+      },
+      {
+        element: <ShopByCategory></ShopByCategory>,
+        loader: () => fetch('toyCars.json'),
       },
     ],
   },

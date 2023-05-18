@@ -36,7 +36,7 @@ const Gallery = () => {
   return (
     <section className="py-12">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold font-mono text-purple-500 text-center mb-6">
+        <h2 className="text-3xl border-b w-fit mx-auto border-purple-500 font-bold font-mono text-purple-500 text-center mb-6">
           Toy Cars Gallery
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

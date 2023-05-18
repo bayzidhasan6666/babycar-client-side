@@ -1,89 +1,118 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { ToastContainer, toast } from 'react-toastify';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const ShopByCategory = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { user } = useContext(AuthContext);
+  const allToys = useLoaderData();
+  console.log(allToys);
+  const navigate = useNavigate();
   const handleViewDetails = (toyName) => {
-    if (isLoggedIn) {
+    if (user) {
       // Redirect to toy details page
-      history.push(`/toy/${toyName}`);
+      navigate(`/toy/${toyName}`);
     } else {
       // Show login message and redirect to login page
-      alert('You have to log in first to view details');
-      history.push('/login');
+      toast.warning('You have to log in first to view details');
+      navigate('/login');
     }
   };
 
   return (
     <section className="py-12">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Shop by Category</h2>
+        <h2 className="text-3xl font-bold font-mono border-b w-fit mx-auto border-teal-400 text-center text-teal-500 mb-6">
+          Shop by Category
+        </h2>
         <Tabs>
           <TabList className="flex mb-4">
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
-              Sports Cars
+              Rare Cars
             </Tab>
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
               Super Cars
             </Tab>
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
-              Off Road Cars
+              Sports Cars
             </Tab>
           </TabList>
 
           <TabPanel>
             <h3>Sub-Category 1</h3>
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              {/* Toy 1 */}
-              <div className="bg-white p-4 rounded shadow">
-                <img
-                  src="toy1.jpg"
-                  alt="Toy 1"
-                  className="w-full h-48 object-cover mb-4"
-                />
-                <h4 className="text-lg font-bold mb-2">Toy 1 Name</h4>
-                <p className="text-gray-700 mb-2">$19.99</p>
-                <p className="text-gray-700 mb-2">Rating: 4.5</p>
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleViewDetails('toy1')}
-                >
-                  View Details
-                </button>
-              </div>
-
-              {/* Toy 2 */}
-              <div className="bg-white p-4 rounded shadow">
-                <img
-                  src="toy2.jpg"
-                  alt="Toy 2"
-                  className="w-full h-48 object-cover mb-4"
-                />
-                <h4 className="text-lg font-bold mb-2">Toy 2 Name</h4>
-                <p className="text-gray-700 mb-2">$24.99</p>
-                <p className="text-gray-700 mb-2">Rating: 4.2</p>
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleViewDetails('toy2')}
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
+            {/* <div className="grid grid-cols-2 gap-4 mt-4">
+              {rareCars.map((toy, index) => (
+                <div key={index} className=" p-4 rounded shadow">
+                  <img
+                    src={toy.image}
+                    alt={toy.name}
+                    className="w-full h-48 object-cover mb-4"
+                  />
+                  <h4 className="text-lg font-bold mb-2">{toy.name}</h4>
+                  <p className="text-gray-700 mb-2">${toy.price}</p>
+                  <p className="text-gray-700 mb-2">Rating: {toy.rating}</p>
+                  <button
+                    className="border border-teal-500 hover:border-purple-700 text-teal-400 hover:text-purple-600 font-bold py-2 px-4 rounded"
+                    onClick={() => handleViewDetails(toy.id)}
+                  >
+                    View Details
+                  </button>
+                </div>
+              ))}
+            </div> */}
           </TabPanel>
 
           <TabPanel>
             <h3>Sub-Category 2</h3>
-            {/* Add toys for Sub-Category 2 */}
+            {/* <div className="grid grid-cols-2 gap-4 mt-4">
+              {superCars.map((toy, index) => (
+                <div key={index} className=" p-4 rounded shadow">
+                  <img
+                    src={toy.image}
+                    alt={toy.name}
+                    className="w-full h-48 object-cover mb-4"
+                  />
+                  <h4 className="text-lg font-bold mb-2">{toy.name}</h4>
+                  <p className="text-gray-700 mb-2">${toy.price}</p>
+                  <p className="text-gray-700 mb-2">Rating: {toy.rating}</p>
+                  <button
+                    className="border border-teal-500 hover:border-purple-700 text-teal-400 hover:text-purple-600 font-bold py-2 px-4 rounded"
+                    onClick={() => handleViewDetails(toy.id)}
+                  >
+                    View Details
+                  </button>
+                </div>
+              ))}
+            </div> */}
           </TabPanel>
 
           <TabPanel>
             <h3>Sub-Category 3</h3>
-            {/* Add toys for Sub-Category 3 */}
+            {/* <div className="grid grid-cols-2 gap-4 mt-4">
+              {sportsCars.map((toy, index) => (
+                <div key={index} className=" p-4 rounded shadow">
+                  <img
+                    src={toy.image}
+                    alt={toy.name}
+                    className="w-full h-48 object-cover mb-4"
+                  />
+                  <h4 className="text-lg font-bold mb-2">{toy.name}</h4>
+                  <p className="text-gray-700 mb-2">${toy.price}</p>
+                  <p className="text-gray-700 mb-2">Rating: {toy.rating}</p>
+                  <button
+                    className="border border-teal-500 hover:border-purple-700 text-teal-400 hover:text-purple-600 font-bold py-2 px-4 rounded"
+                    onClick={() => handleViewDetails(toy.id)}
+                  >
+                    View Details
+                  </button>
+                </div>
+              ))}
+            </div> */}
           </TabPanel>
         </Tabs>
       </div>
+      <ToastContainer></ToastContainer>
     </section>
   );
 };

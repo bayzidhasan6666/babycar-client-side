@@ -1,0 +1,53 @@
+[
+  {
+    "category": "Rare Cars",
+    "rareCars": [
+      {
+        "picture": "https://images.unsplash.com/photo-1572635196184-84e35138cf62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80",
+        "name": "Lamborghini Aventador",
+        "price": "$19.99",
+        "rating": 4.5
+      },
+      {
+        "picture": "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80",
+        "name": "Ferrari 488",
+        "price": "$24.99",
+        "rating": 4.2
+      }
+    ]
+  },
+  {
+    "category": "Super Cars",
+    "superCars": [
+      {
+        "picture": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "name": "Bugatti Chiron",
+        "price": "$29.99",
+        "rating": 4.8
+      },
+      {
+        "picture": "https://images.unsplash.com/photo-1598084991519-c90900bc9df0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        "name": "McLaren P1",
+        "price": "$34.99",
+        "rating": 4.4
+      }
+    ]
+  },
+  {
+    "category": "Sports Cars",
+    "sportsCars": [
+      {
+        "picture": "https://images.unsplash.com/photo-1597670250484-0e9aff7f8804?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "name": "Jeep Wrangler",
+        "price": "$39.99",
+        "rating": 4.6
+      },
+      {
+        "picture": "https://images.unsplash.com/photo-1616850508698-8cb0c576d5ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=838&q=80",
+        "name": "Ford Raptor",
+        "price": "$44.99",
+        "rating": 4.3
+      }
+    ]
+  }
+]
