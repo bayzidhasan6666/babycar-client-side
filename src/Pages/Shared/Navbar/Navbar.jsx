@@ -35,7 +35,7 @@ const Navbar = () => {
               )}
             </button>
           </div>
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex-1 flex items-center  justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0 flex items-center">
               <Link
                 to="/"
@@ -47,8 +47,8 @@ const Navbar = () => {
                 </button>
               </Link>
             </div>
-            <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
+            <div className="hidden mt-2  sm:block sm:ml-6">
+              <div className="flex space-x-4 ">
                 <ActiveLink
                   to="/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -56,7 +56,7 @@ const Navbar = () => {
                   Home
                 </ActiveLink>
                 <ActiveLink
-                  to="/toys"
+                  to="/allToys"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   All Toys
@@ -94,14 +94,14 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <ActiveLink to={'/login'}>
+              <Link to={'/login'}>
                 <button className="border border-teal-500 text-teal-500 hover:text-teal-600  px-3 py-2 rounded-md text-sm font-medium">
                   Login
                 </button>
-              </ActiveLink>
+              </Link>
             )}
             {user && (
-              <div className="dropdown dropdown-end">
+              <div className="dropdown  dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img
@@ -144,7 +144,7 @@ const Navbar = () => {
               Home
             </ActiveLink>
             <ActiveLink
-              to="/toys"
+              to="/allToys"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               All Toys
