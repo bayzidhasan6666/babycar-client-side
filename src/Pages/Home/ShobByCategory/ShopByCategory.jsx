@@ -16,19 +16,19 @@ const ShopByCategory = () => {
   };
 
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold mb-6">Shop by Category</h2>
         <Tabs>
           <TabList className="flex mb-4">
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
-              Category 1
+              Sports Cars
             </Tab>
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
-              Category 2
+              Super Cars
             </Tab>
             <Tab className="mr-4 border-b-2 border-transparent hover:border-blue-500">
-              Category 3
+              Off Road Cars
             </Tab>
           </TabList>
 

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Gallery = () => {
+  const [showAll, setShowAll] = useState(false);
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
   const images = [
     'https://images.unsplash.com/photo-1572635196184-84e35138cf62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80',
     'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80',
@@ -35,32 +40,36 @@ const Gallery = () => {
           Toy Cars Gallery
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((image, index) => (
+          {images.slice(0, showAll ? images.length : 8).map((image, index) => (
             <div key={index} className="relative">
               <img
                 src={image}
                 alt={`Gallery Image ${index + 1}`}
                 className="w-full h-64 object-cover rounded"
               />
-              <div className="absolute bottom-2 right-2 flex items-center justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 text-teal-400"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
             </div>
           ))}
         </div>
+        {!showAll && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={toggleShowAll}
+              className="px-4 py-2 border border-teal-500 text-teal-400 rounded hover:border-purple-600 hover:text-purple-500"
+            >
+              See More
+            </button>
+          </div>
+        )}
+        {showAll && (
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={toggleShowAll}
+              className="px-4 py-2 border  border-purple-500 text-purple-500 rounded hover:border-teal-400 hover:text-teal-400"
+            >
+              See Less
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
