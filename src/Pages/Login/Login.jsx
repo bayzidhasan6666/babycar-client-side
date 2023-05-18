@@ -174,15 +174,15 @@ const Login = () => {
         </div>
         <div className="flex justify-center space-x-4">
           <button
-            className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-teal-500 hover:bg-teal-500 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            className="group relative flex gap-2 justify-center py-2 px-4 border text-sm font-medium rounded-md text-white border-teal-500 hover:bg-teal-500 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={handleGoogleSignIn}
           >
             <FaGoogle className="h-5 w-5 text-white group-hover:text-white" />
           </button>
-          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-blue-600 transition-all  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border text-sm font-medium rounded-md text-white border-blue-600 transition-all  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
             <FaFacebook className="h-5 w-5 text-white group-hover:text-white" />
           </button>
-          <button className="group relative flex gap-2 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white border-purple-600 transition-all  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+          <button className="group relative flex gap-2 justify-center py-2 px-4 border  text-sm font-medium rounded-md text-white  border-purple-600 transition-all  hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
             <FaGithub className="h-5 w-5 text-white group-hover:text-white" />
           </button>
         </div>

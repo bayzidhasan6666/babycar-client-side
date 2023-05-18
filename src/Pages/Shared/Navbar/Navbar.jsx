@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from '../../../assets/logo.png';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import ActiveLink from '../../ActiveLink/ActiveLink';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,40 +49,40 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                <Link
+                <ActiveLink
                   to="/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Home
-                </Link>
-                <Link
+                </ActiveLink>
+                <ActiveLink
                   to="/toys"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   All Toys
-                </Link>
+                </ActiveLink>
                 {user && (
                   <>
-                    <Link
+                    <ActiveLink
                       to="/mytoys"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       My Toys
-                    </Link>
-                    <Link
+                    </ActiveLink>
+                    <ActiveLink
                       to="/addtoy"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Add A Toy
-                    </Link>
+                    </ActiveLink>
                   </>
                 )}
-                <Link
-                  to="/blogs"
+                <ActiveLink
+                  to="/blog"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Blogs
-                </Link>
+                  Blog
+                </ActiveLink>
               </div>
             </div>
           </div>
@@ -93,11 +94,11 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <Link to={'/login'}>
+              <ActiveLink to={'/login'}>
                 <button className="border border-teal-500 text-teal-500 hover:text-teal-600  px-3 py-2 rounded-md text-sm font-medium">
                   Login
                 </button>
-              </Link>
+              </ActiveLink>
             )}
             {user && (
               <div className="dropdown dropdown-end">
@@ -136,40 +137,40 @@ const Navbar = () => {
       {isOpen && (
         <div className="sm:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link
+            <ActiveLink
               to="/"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Home
-            </Link>
-            <Link
+            </ActiveLink>
+            <ActiveLink
               to="/toys"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               All Toys
-            </Link>
+            </ActiveLink>
             {user && (
               <>
-                <Link
+                <ActiveLink
                   to="/mytoys"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   My Toys
-                </Link>
-                <Link
+                </ActiveLink>
+                <ActiveLink
                   to="/addtoy"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Add A Toy
-                </Link>
+                </ActiveLink>
               </>
             )}
-            <Link
-              to="/blogs"
+            <ActiveLink
+              to="/blog"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Blogs
-            </Link>
+              Blog
+            </ActiveLink>
           </div>
         </div>
       )}
