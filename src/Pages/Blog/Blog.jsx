@@ -1,7 +1,9 @@
 import React from 'react';
 import { FaDatabase, FaCode, FaCogs } from 'react-icons/fa';
+import useTitle from '../../PageTitle/useTitle';
 
 const Blog = () => {
+  useTitle('Blog Page');
   return (
     <div className="container mx-auto p-8">
       <div className="flex items-center mb-5 justify-center space-x-4">

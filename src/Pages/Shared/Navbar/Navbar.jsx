@@ -89,7 +89,7 @@ const Navbar = () => {
           <div className=" flex items-center gap-2">
             {user ? (
               <div onClick={handleLogOut} className="relative group">
-                <button className="text-purple-400 border border-purple-400 hover:text-purple-600  px-3 py-2 rounded-md text-sm font-medium">
+                <button className="text-purple-600 border border-purple-600 hover:text-purple-700  px-3 py-2 rounded-md text-sm font-medium">
                   Logout
                 </button>
               </div>

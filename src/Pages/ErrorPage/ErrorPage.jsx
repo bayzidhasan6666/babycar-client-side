@@ -22,7 +22,7 @@ const ErrorPage = () => {
             </p>
             <Link
               to="/"
-              className="border border-cyan-400 px-3 py-1 font-semibold hover:border-red-500 hover:text-orange-400 text-emerald-400"
+              className="border border-purple-600 px-3 py-1 font-semibold hover:border-teal-500 hover:text-teal-500 text-purple-600"
             >
               Back to homepage
             </Link>

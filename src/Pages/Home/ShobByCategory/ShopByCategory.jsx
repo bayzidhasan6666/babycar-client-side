@@ -13,7 +13,7 @@ const ShopByCategory = () => {
       .then((res) => res.json())
       .then((data) => {
         setAllToys(data);
-        console.log(data);
+        // console.log(data);
       });
   }, []);
 
