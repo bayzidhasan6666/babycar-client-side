@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Gallery = () => {
   const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
@@ -34,7 +40,7 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-12">
+    <section data-aos="fade-up" className="py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl border-b w-fit mx-auto border-purple-500 font-bold font-mono text-purple-500 text-center mb-6">
           Toy Cars Gallery
@@ -43,6 +49,7 @@ const Gallery = () => {
           {images.slice(0, showAll ? images.length : 8).map((image, index) => (
             <div key={index} className="relative">
               <img
+                data-aos="fade-up"
                 src={image}
                 alt={`Gallery Image ${index + 1}`}
                 className="w-full h-64 object-cover rounded"

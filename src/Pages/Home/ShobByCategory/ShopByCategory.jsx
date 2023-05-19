@@ -3,6 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ShopByCategory = () => {
   const { user } = useContext(AuthContext);
@@ -17,6 +19,10 @@ const ShopByCategory = () => {
       });
   }, []);
 
+   useEffect(() => {
+     AOS.init();
+   }, []);
+
   const navigate = useNavigate();
 
   const handleViewDetails = (category, toy) => {
@@ -24,13 +30,13 @@ const ShopByCategory = () => {
   };
 
   return (
-    <section className="py-12">
+    <section data-aos="fade-up" className="py-12">
       <div className="container  mx-auto">
         <h2 className="text-3xl  font-bold font-mono border-b w-fit mx-auto border-teal-400 text-center text-teal-500 mb-6">
           Shop by Category
         </h2>
         <Tabs className="">
-          <TabList className="flex mx-auto mb-4 w-fit">
+          <TabList data-aos="fade-left" className="flex mx-auto mb-4 w-fit">
             <Tab
               className="mr-4 font-serif cursor-pointer text-purple-600  hover:border-purple-500"
               selectedClassName="border-b border-purple-600"
@@ -60,10 +66,12 @@ const ShopByCategory = () => {
               {allToys.length > 0 &&
                 allToys[0].rareCars.map((toy, index) => (
                   <div
+                    data-aos="fade-up"
                     key={index}
                     className=" p-4 rounded shadow-xl border border-purple-700"
                   >
                     <img
+                      data-aos="fade-right"
                       src={toy.picture}
                       alt={toy.name}
                       className="w-full h-48 object-cover mb-4"

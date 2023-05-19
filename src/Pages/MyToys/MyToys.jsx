@@ -1,63 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import useTitle from '../../PageTitle/useTitle';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { AuthContext } from '../../Providers/AuthProvider';
 
-const AllToys = () => {
-  const [allToys, setAllToys] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredToys, setFilteredToys] = useState([]);
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
-  useTitle('All Toys');
+const MyToys = () => {
+  const { user } = useContext(AuthContext);
+  const [myToys, setMyToys] = useState([]);
+  const url = `http://localhost:5000/addToys?email=${user.email}`;
 
   useEffect(() => {
-    fetch('http://localhost:5000/addToys')
-      .then((response) => response.json())
+    fetch(url)
+      .then((res) => res.json())
       .then((data) => {
-        setAllToys(data);
-        setFilteredToys(data.slice(0, 20)); // Display 20 results by default
+        console.log(data);
+        setMyToys(data);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  useEffect(() => {
-    // Filter toys based on search query
-    const filtered = allToys.filter((toy) => {
-      const name = toy.name ? toy.name.toLowerCase() : '';
-      return name.includes(searchQuery.toLowerCase());
-    });
-    setFilteredToys(filtered);
-  }, [searchQuery, allToys]);
-
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   return (
-    <div
-      data-aos="fade-down"
-      className="bg-gray-900 text-gray-400 min-h-screen p-8"
-    >
+    <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
       <div className="text-center">
         <h1 className="text-2xl text-purple-600 font-semibold mb-4">
-          Here Are the {filteredToys.length} Toy Cars Available
+          Here Are the {myToys.length} Toy Cars Available
         </h1>
       </div>
       <div className="flex justify-center my-4">
         <input
           type="text"
           placeholder="Search by Toy Name"
-          value={searchQuery}
-          onChange={handleSearch}
           className="border border-teal-500 rounded px-2 py-1 bg-gray-800"
         />
       </div>
-      <table className="min-w-full  bg-opacity-10 border border-teal-500">
+      <table className="min-w-full bg-opacity-10 border border-teal-500">
         <thead>
           <tr className="text-purple-500">
             <th className="border-b border-teal-500 py-2">Seller Name</th>
@@ -71,8 +45,8 @@ const AllToys = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredToys.map((toy) => (
-            <tr data-aos="fade-up" key={toy._id}>
+          {myToys.map((toy) => (
+            <tr key={toy._id}>
               <td className="border-b border-purple-600 py-2">
                 {toy.sellerName ? toy.sellerName : 'N/A'}
               </td>
@@ -84,6 +58,7 @@ const AllToys = () => {
               <td className="border-b border-purple-600 py-2">
                 {toy.quantity}
               </td>
+
               <td className="border-b border-purple-600 py-2">
                 <Link to={`/allToys/${toy._id}`}>
                   <button className="text-teal-500">View Details</button>
@@ -97,4 +72,4 @@ const AllToys = () => {
   );
 };
 
-export default AllToys;
+export default MyToys;

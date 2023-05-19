@@ -8,10 +8,19 @@ import {
   FaEnvelope,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <footer className="border-t border-teal-900 text-white py-10">
+    <footer
+      data-aos="fade-up"
+      className="border-t border-teal-900 text-white py-10"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4">

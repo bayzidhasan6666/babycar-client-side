@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Banner = () => {
   const settings = {
@@ -14,9 +16,11 @@ const Banner = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
-
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <section className="banner-section">
+    <section data-aos="fade-down" className="banner-section">
       <Slider {...settings}>
         <div>
           <div className="carousel-item">
