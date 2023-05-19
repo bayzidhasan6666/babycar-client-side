@@ -108,7 +108,26 @@ const Navbar = () => {
                       title={
                         user.displayName ? user.displayName : 'no name found'
                       }
-                      src={user.photoURL ? user.photoURL : ''}
+                      src={
+                        user.photoURL ? (
+                          user.photoURL
+                        ) : (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-6 h-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                            />
+                          </svg>
+                        )
+                      }
                     />
                   </div>
                 </label>
@@ -136,7 +155,7 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div className="sm:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-2 flex flex-col pt-2 pb-3 space-y-1">
             <ActiveLink
               to="/"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
@@ -152,13 +171,13 @@ const Navbar = () => {
             {user && (
               <>
                 <ActiveLink
-                  to="/mytoys"
+                  to="/myToys"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   My Toys
                 </ActiveLink>
                 <ActiveLink
-                  to="/addtoy"
+                  to="/addToy"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Add A Toy
@@ -169,7 +188,7 @@ const Navbar = () => {
               to="/blog"
               className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Blog
+              Blogs
             </ActiveLink>
           </div>
         </div>
