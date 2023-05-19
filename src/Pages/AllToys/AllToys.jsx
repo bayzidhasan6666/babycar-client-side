@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../PageTitle/useTitle';
+import { Link } from 'react-router-dom';
 
 const AllToys = () => {
   const [allToys, setAllToys] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredToys, setFilteredToys] = useState([]);
+
+  useTitle('All Toys');
 
   useEffect(() => {
     fetch('http://localhost:5000/addToys')
@@ -26,10 +30,6 @@ const AllToys = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-  };
-
-  const viewDetails = (toyId) => {
-    // Implement the logic to view details of a toy
   };
 
   return (
@@ -76,12 +76,9 @@ const AllToys = () => {
                 {toy.quantity}
               </td>
               <td className="border-b border-purple-600 py-2">
-                <button
-                  className="text-teal-500"
-                  onClick={() => viewDetails(toy.id)}
-                >
-                  View Details
-                </button>
+                <Link to={`/allToys/${toy._id}`}>
+                  <button className="text-teal-500">View Details</button>
+                </Link>
               </td>
             </tr>
           ))}

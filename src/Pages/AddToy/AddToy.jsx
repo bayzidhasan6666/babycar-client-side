@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../PageTitle/useTitle';
 
 const AddToy = () => {
   const [pictureUrl, setPictureUrl] = useState('');
@@ -12,6 +13,7 @@ const AddToy = () => {
   const [rating, setRating] = useState('');
   const [quantity, setQuantity] = useState('');
   const [description, setDescription] = useState('');
+  useTitle('Add A Toy');
 
   const handleSubmit = (e) => {
     e.preventDefault();
