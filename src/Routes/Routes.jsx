@@ -53,6 +53,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: '/allToys',
+        element: <AllToys></AllToys>,
+      },
     ],
   },
 ]);
