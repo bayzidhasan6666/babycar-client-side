@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddToy = () => {
   const [pictureUrl, setPictureUrl] = useState('');
@@ -37,8 +38,8 @@ const AddToy = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.insertedId){
-          
+        if (data.insertedId) {
+          Swal.fire('Success!', 'Car Added Successfully!', 'success');
         }
       });
   };
