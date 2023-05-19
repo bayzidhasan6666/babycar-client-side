@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ShopByCategory = () => {
   const { user } = useContext(AuthContext);
@@ -18,13 +18,9 @@ const ShopByCategory = () => {
   }, []);
 
   const navigate = useNavigate();
-  const handleViewDetails = (toyName) => {
-    if (user) {
-      navigate(`/toyCars/${toyName}`);
-    } else {
-      toast.warning('You have to log in first to view details');
-      navigate('/login');
-    }
+
+  const handleViewDetails = (category, toy) => {
+    navigate(`/carDetails`, { state: { category, toy } });
   };
 
   return (
@@ -79,7 +75,7 @@ const ShopByCategory = () => {
                     <p className="text-purple-600 mb-2">Rating: {toy.rating}</p>
                     <button
                       className="border border-purple-600 hover:border-teal-600 text-purple-600 hover:text-teal-600 font-bold py-2 px-4 rounded"
-                      onClick={() => handleViewDetails(toy.name)}
+                      onClick={() => handleViewDetails('rareCars', toy)}
                     >
                       View Details
                     </button>
@@ -111,7 +107,7 @@ const ShopByCategory = () => {
                     <p className="text-purple-600 mb-2">Rating: {toy.rating}</p>
                     <button
                       className="border border-purple-600 hover:border-teal-600 text-purple-600 hover:text-teal-600 font-bold py-2 px-4 rounded"
-                      onClick={() => handleViewDetails(toy.name)}
+                      onClick={() => handleViewDetails('superCars', toy)}
                     >
                       View Details
                     </button>
@@ -143,7 +139,7 @@ const ShopByCategory = () => {
                     <p className="text-purple-600 mb-2">Rating: {toy.rating}</p>
                     <button
                       className="border border-purple-600 hover:border-teal-600 text-purple-600 hover:text-teal-600 font-bold py-2 px-4 rounded"
-                      onClick={() => handleViewDetails(toy.name)}
+                      onClick={() => handleViewDetails('sportsCars', toy)}
                     >
                       View Details
                     </button>
