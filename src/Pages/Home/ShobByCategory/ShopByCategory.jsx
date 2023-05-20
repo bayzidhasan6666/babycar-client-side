@@ -11,7 +11,7 @@ const ShopByCategory = () => {
   const [allToys, setAllToys] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/carToys')
+    fetch('https://assignment-11-server-side-murex.vercel.app/carToys')
       .then((res) => res.json())
       .then((data) => {
         setAllToys(data);
@@ -19,9 +19,9 @@ const ShopByCategory = () => {
       });
   }, []);
 
-   useEffect(() => {
-     AOS.init();
-   }, []);
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const navigate = useNavigate();
 

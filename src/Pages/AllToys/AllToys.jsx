@@ -18,7 +18,7 @@ const AllToys = () => {
   const pageNumbers = [...Array(totalPages).keys()];
 
   useEffect(() => {
-    fetch('http://localhost:5000/totalToys')
+    fetch('https://assignment-11-server-side-murex.vercel.app/totalToys')
       .then((res) => res.json())
       .then((data) => {
         console.log(data.totalToys);
@@ -38,7 +38,7 @@ const AllToys = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:5000/addToys?page=${currentPage}&limit=${itemsPerPage}`
+        `https://assignment-11-server-side-murex.vercel.app/addToys?page=${currentPage}&limit=${itemsPerPage}`
       );
       const data = await response.json();
       setAllToys(data);

@@ -20,13 +20,16 @@ const UpdateToy = () => {
     };
     console.log(updateToyData);
     // send data to the server
-    fetch(`http://localhost:5000/updateToy/${toy._id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updateToyData),
-    })
+    fetch(
+      `https://assignment-11-server-side-murex.vercel.app/updateToy/${toy._id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateToyData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaDatabase, FaCode, FaCogs } from 'react-icons/fa';
 import useTitle from '../../PageTitle/useTitle';
 
 const Blog = () => {
   useTitle('Blog Page');
+
+  const [pinnedBlogs, setPinnedBlogs] = useState([]);
+
+  const handlePinToggle = (blog) => {
+    if (isPinned(blog)) {
+      unpinBlog(blog);
+    } else {
+      pinBlog(blog);
+    }
+  };
+
+  const isPinned = (blog) => {
+    return pinnedBlogs.some((pinnedBlog) => pinnedBlog === blog);
+  };
+
+  const pinBlog = (blog) => {
+    setPinnedBlogs([...pinnedBlogs, blog]);
+  };
+
+  const unpinBlog = (blog) => {
+    setPinnedBlogs(pinnedBlogs.filter((pinnedBlog) => pinnedBlog !== blog));
+  };
+
   return (
     <div className="container mx-auto p-8">
       <div className="flex items-center mb-5 justify-center space-x-4">
@@ -99,9 +122,24 @@ const Blog = () => {
 
       <div className="flex items-center justify-center mt-8">
         <div className="flex items-center space-x-4">
-          <FaDatabase className="text-4xl text-blue-500" />
-          <FaCode className="text-4xl text-purple-500" />
-          <FaCogs className="text-4xl text-green-500" />
+          <FaDatabase
+            className={`text-4xl ${
+              isPinned('access-token') ? 'text-blue-800' : 'text-blue-500'
+            }`}
+            onClick={() => handlePinToggle('access-token')}
+          />
+          <FaCode
+            className={`text-4xl ${
+              isPinned('sql-nosql') ? 'text-purple-800' : 'text-purple-500'
+            }`}
+            onClick={() => handlePinToggle('sql-nosql')}
+          />
+          <FaCogs
+            className={`text-4xl ${
+              isPinned('express-nest') ? 'text-green-800' : 'text-green-500'
+            }`}
+            onClick={() => handlePinToggle('express-nest')}
+          />
         </div>
       </div>
     </div>

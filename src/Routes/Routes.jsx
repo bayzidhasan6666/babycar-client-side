@@ -68,7 +68,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/addToys/${params.id}`),
+          fetch(
+            `https://assignment-11-server-side-murex.vercel.app/addToys/${params.id}`
+          ),
       },
       {
         path: '/myToys',
@@ -78,7 +80,9 @@ const router = createBrowserRouter([
         path: '/updateToy/:id',
         element: <UpdateToy></UpdateToy>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateToy/${params.id}`),
+          fetch(
+            `https://assignment-11-server-side-murex.vercel.app/updateToy/${params.id}`
+          ),
       },
     ],
   },

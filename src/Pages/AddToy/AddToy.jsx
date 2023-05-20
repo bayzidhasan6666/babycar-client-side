@@ -32,7 +32,7 @@ const AddToy = () => {
     };
     console.log(addToyData);
     // send data to the server
-    fetch('http://localhost:5000/addToys', {
+    fetch('https://assignment-11-server-side-murex.vercel.app/addToys', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

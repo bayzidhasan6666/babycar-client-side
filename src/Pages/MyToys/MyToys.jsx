@@ -13,7 +13,7 @@ const MyToys = () => {
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const url = `http://localhost:5000/myToys/${user?.email}`;
+  const url = `https://assignment-11-server-side-murex.vercel.app/myToys/${user?.email}`;
 
   useEffect(() => {
     AOS.init();
@@ -57,9 +57,12 @@ const MyToys = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myToys/${id}`, {
-          method: 'DELETE',
-        })
+        fetch(
+          `https://assignment-11-server-side-murex.vercel.app/myToys/${id}`,
+          {
+            method: 'DELETE',
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
