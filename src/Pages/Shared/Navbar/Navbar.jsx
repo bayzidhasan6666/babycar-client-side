@@ -64,13 +64,13 @@ const Navbar = () => {
                 {user && (
                   <>
                     <ActiveLink
-                      to={`/myToys/${user.email}`}
+                      to={`/myToys`}
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       My Toys
                     </ActiveLink>
                     <ActiveLink
-                      to="/addtoy"
+                      to="/addToy"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Add A Toy
@@ -171,7 +171,7 @@ const Navbar = () => {
             {user && (
               <>
                 <ActiveLink
-                  to={`/myToys/${user.email}`}
+                  to={`/myToys`}
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   My Toys

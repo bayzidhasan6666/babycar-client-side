@@ -4,6 +4,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import useTitle from '../../PageTitle/useTitle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const MyToys = () => {
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const url = `http://localhost:5000/addToys?email=${user.email}&sort=${sortOrder}&search=${searchQuery}`;
+  const url = `http://localhost:5000/myToys/${user?.email}`;
 
   useEffect(() => {
     AOS.init();
@@ -19,9 +20,10 @@ const MyToys = () => {
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
+        console.log(data);
       })
       .catch((error) => console.log(error));
-  }, [sortOrder, searchQuery]);
+  }, [sortOrder, searchQuery, user]);
 
   useEffect(() => {
     // Filter toys based on search query
@@ -111,12 +113,18 @@ const MyToys = () => {
               </td>
               <td className="border-b border-purple-600 py-2">
                 <Link to={`/allToys/${toy._id}`}>
-                  <button className="text-teal-500">View Details</button>
+                  <button className="text-purple-500 border border-purple-500 px-2">
+                    View Details
+                  </button>
                 </Link>
               </td>
               <td className="border-b border-purple-600 py-2">
-                <button className="text-yellow-500 mr-2">Update</button>
-                <button className="text-red-500">Delete</button>
+                <button className="text-emerald-500 mr-2">
+                  <FaEdit />
+                </button>
+                <button className="text-red-500">
+                  <FaTrash />
+                </button>
               </td>
             </tr>
           ))}

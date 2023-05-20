@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useTitle from '../../PageTitle/useTitle';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const AddToy = () => {
+  const { user } = useContext(AuthContext);
   const [pictureUrl, setPictureUrl] = useState('');
   const [name, setName] = useState('');
   const [sellerName, setSellerName] = useState('');
@@ -83,7 +85,7 @@ const AddToy = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
-                placeholder="Name"
+                placeholder="Toy Name"
               />
             </div>
             <div>
@@ -110,7 +112,7 @@ const AddToy = () => {
                 name="sellerEmail"
                 type="email"
                 autoComplete="off"
-                value={sellerEmail}
+                defaultValue={user.email}
                 onChange={(e) => setSellerEmail(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Seller Email"
@@ -127,7 +129,7 @@ const AddToy = () => {
                 onChange={(e) => setSubcategory(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
               >
-                <option value="">Select a Sub-category</option>
+                <option value="">Select a Category</option>
                 <option value="Rare Car">Rare Car</option>
                 <option value="Super Car">Super Car</option>
                 <option value="Sports Car">Sports Car</option>

@@ -112,7 +112,9 @@ const AllToys = () => {
               </td>
               <td className="border-b border-purple-600 py-2">
                 <Link to={`/allToys/${toy._id}`}>
-                  <button className="text-teal-500">View Details</button>
+                  <button className="text-purple-500 border border-purple-500 px-2">
+                    View Details
+                  </button>
                 </Link>
               </td>
             </tr>
