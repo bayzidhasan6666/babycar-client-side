@@ -9,6 +9,25 @@ const AllToys = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredToys, setFilteredToys] = useState([]);
 
+  // pagination start
+  const [totalToys, setTotalToys] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const totalPages = Math.ceil(totalToys / itemsPerPage);
+
+  const pageNumbers = [...Array(totalPages).keys()];
+
+  useEffect(() => {
+    fetch('http://localhost:5000/totalToys')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.totalToys);
+        setTotalToys(data.totalToys);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  // pagination end
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -16,14 +35,15 @@ const AllToys = () => {
   useTitle('All Toys');
 
   useEffect(() => {
-    fetch('http://localhost:5000/addToys')
-      .then((response) => response.json())
-      .then((data) => {
-        setAllToys(data);
-        setFilteredToys(data.slice(0, 20)); // Display 20 results by default
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    async function fetchData() {
+      const response = await fetch(
+        `http://localhost:5000/addToys?page=${currentPage}&limit=${itemsPerPage}`
+      );
+      const data = await response.json();
+      setAllToys(data);
+    }
+    fetchData();
+  }, [currentPage, itemsPerPage]);
 
   useEffect(() => {
     // Filter toys based on search query
@@ -38,6 +58,12 @@ const AllToys = () => {
     setSearchQuery(e.target.value);
   };
 
+  const options = [10, 15, 20];
+  const handleSelectChange = (event) => {
+    setItemsPerPage(parseInt(event.target.value));
+    setCurrentPage(0);
+  };
+
   return (
     <div
       data-aos="fade-down"
@@ -45,7 +71,7 @@ const AllToys = () => {
     >
       <div className="text-center">
         <h1 className="text-2xl text-purple-600 font-semibold mb-4">
-          Here Are the {filteredToys.length} Toy Cars Available
+          Here Are the {filteredToys.length} Toy Cars Available In This Page
         </h1>
       </div>
       <div className="flex justify-center my-4">
@@ -72,7 +98,7 @@ const AllToys = () => {
         </thead>
         <tbody>
           {filteredToys.map((toy) => (
-            <tr data-aos="fade-up" key={toy._id}>
+            <tr key={toy._id}>
               <td className="border-b border-purple-600 py-2">
                 {toy.sellerName ? toy.sellerName : 'N/A'}
               </td>
@@ -93,6 +119,36 @@ const AllToys = () => {
           ))}
         </tbody>
       </table>
+      <div className="mx-auto flex w-fit space-x-2">
+        {pageNumbers.map((number) => (
+          <button
+            onClick={() => setCurrentPage(number)}
+            className={` ${
+              currentPage === number
+                ? 'px-3 py-1 border-none bg-purple-700 text-white mt-5'
+                : 'px-3 py-1 border border-purple-600 mt-5'
+            }`}
+            key={number}
+          >
+            {number}
+          </button>
+        ))}
+        <select
+          className="border text-teal-500 bg-transparent border-teal-500 px-2 mt-5 "
+          value={itemsPerPage}
+          onChange={handleSelectChange}
+        >
+          {options.map((option) => (
+            <option
+              className="border text-teal-500"
+              key={option}
+              value={option}
+            >
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
