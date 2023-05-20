@@ -5,6 +5,7 @@ import useTitle from '../../PageTitle/useTitle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -45,15 +46,43 @@ const MyToys = () => {
 
   useTitle('My Toys');
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to delete this toy?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/myToys/${id}`, {
+          method: 'DELETE',
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire('Deleted!', 'Your Toy has been deleted.', 'success');
+              const remaining = myToys.filter((toy) => toy._id !== id);
+              setMyToys(remaining);
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
+
   return (
     <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
       <div className="text-center">
         <h1
           data-aos="fade-down"
           data-aos-duration="1000"
-          className="text-2xl text-purple-600 font-semibold mb-4"
+          className="text-2xl text-teal-600 font-semibold mb-4"
         >
-          Here Are the {myToys.length} Toy Cars Available
+          You Have {myToys.length} Toy Cars Available
         </h1>
         <button
           onClick={handleSortChange}
@@ -86,10 +115,10 @@ const MyToys = () => {
         data-aos-delay="1500"
       >
         <thead>
-          <tr className="text-purple-500">
+          <tr className="text-teal-500">
             <th className="border-b border-teal-500 py-2">Seller Name</th>
             <th className="border-b border-teal-500 py-2">Car Name</th>
-            <th className="border-b border-teal-500 py-2">Sub-category</th>
+            <th className="border-b border-teal-500 py-2">Category</th>
             <th className="border-b border-teal-500 py-2">Price</th>
             <th className="border-b border-teal-500 py-2">
               Available Quantity
@@ -100,29 +129,33 @@ const MyToys = () => {
         <tbody>
           {myToys.map((toy) => (
             <tr key={toy._id}>
-              <td className="border-b border-purple-600 py-2">
+              <td className="border-b border-teal-600 py-2">
                 {toy.sellerName ? toy.sellerName : 'N/A'}
               </td>
-              <td className="border-b border-purple-600 py-2">{toy.name}</td>
-              <td className="border-b border-purple-600 py-2">
+              <td className="border-b border-teal-600 py-2">{toy.name}</td>
+              <td className="border-b border-teal-600 py-2">
                 {toy.subcategory}
               </td>
-              <td className="border-b border-purple-600 py-2">${toy.price}</td>
-              <td className="border-b border-purple-600 py-2">
-                {toy.quantity}
-              </td>
-              <td className="border-b border-purple-600 py-2">
+              <td className="border-b border-teal-600 py-2">${toy.price}</td>
+              <td className="border-b border-teal-600 py-2">{toy.quantity}</td>
+              <td className="border-b border-teal-600 py-2">
                 <Link to={`/allToys/${toy._id}`}>
-                  <button className="text-purple-500 border border-purple-500 px-2">
+                  <button className="text-teal-500 border border-teal-500 px-2">
                     View Details
                   </button>
                 </Link>
               </td>
-              <td className="border-b border-purple-600 py-2">
-                <button className="text-emerald-500 mr-2">
-                  <FaEdit />
-                </button>
-                <button className="text-red-500">
+              <td className="border-b border-teal-600 py-2">
+                <Link to={`/updateToy/${toy._id}`}>
+                  <button className="text-emerald-500 mr-2">
+                    <FaEdit />
+                  </button>
+                </Link>
+
+                <button
+                  onClick={() => handleDelete(toy._id)}
+                  className="text-red-500"
+                >
                   <FaTrash />
                 </button>
               </td>

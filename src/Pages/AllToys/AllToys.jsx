@@ -26,6 +26,7 @@ const AllToys = () => {
       })
       .catch((error) => console.log(error));
   }, []);
+
   // pagination end
 
   useEffect(() => {
@@ -70,11 +71,20 @@ const AllToys = () => {
       className="bg-gray-900 text-gray-400 min-h-screen p-8"
     >
       <div className="text-center">
-        <h1 className="text-2xl text-purple-600 font-semibold mb-4">
+        <h1
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          className="text-2xl text-purple-600 font-semibold mb-4"
+        >
           Here Are the {filteredToys.length} Toy Cars Available In This Page
         </h1>
       </div>
-      <div className="flex justify-center my-4">
+      <div
+        className="flex justify-center my-4"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="500"
+      >
         <input
           type="text"
           placeholder="Search by Toy Name"
@@ -83,7 +93,12 @@ const AllToys = () => {
           className="border border-teal-500 rounded px-2 py-1 bg-gray-800"
         />
       </div>
-      <table className="min-w-full  bg-opacity-10 border border-teal-500">
+      <table
+        className="min-w-full bg-opacity-10 border border-teal-500"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="1000"
+      >
         <thead>
           <tr className="text-purple-500">
             <th className="border-b border-teal-500 py-2">Seller Name</th>
@@ -121,7 +136,12 @@ const AllToys = () => {
           ))}
         </tbody>
       </table>
-      <div className="mx-auto flex w-fit space-x-2">
+      <div
+        className="mx-auto flex w-fit space-x-2"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="1500"
+      >
         {pageNumbers.map((number) => (
           <button
             onClick={() => setCurrentPage(number)}
@@ -136,7 +156,7 @@ const AllToys = () => {
           </button>
         ))}
         <select
-          className="border text-teal-500 bg-transparent border-teal-500 px-2 mt-5 "
+          className="border text-teal-500 bg-transparent border-teal-500 px-2 mt-5"
           value={itemsPerPage}
           onChange={handleSelectChange}
         >
