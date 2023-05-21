@@ -41,7 +41,7 @@ const Gallery = () => {
 
   return (
     <section data-aos="fade-up" className="py-12">
-      <div className="container mx-auto">
+      <div className=" container mx-auto">
         <h2 className="text-3xl border-b w-fit mx-auto border-purple-500 font-bold font-mono text-purple-500 text-center mb-6">
           Toy Cars Gallery
         </h2>
@@ -52,7 +52,7 @@ const Gallery = () => {
                 data-aos="fade-up"
                 src={image}
                 alt={`Gallery Image ${index + 1}`}
-                className="w-full h-64 object-cover rounded"
+                className="w-full h-64 hover:animate-pulse object-cover rounded"
               />
             </div>
           ))}
