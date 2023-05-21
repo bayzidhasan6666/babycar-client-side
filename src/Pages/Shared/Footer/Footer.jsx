@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer
       data-aos="fade-up"
-      className="border-t bg-gradient-to-r from-purple-900 to-teal-900 border-teal-900 text-white py-10"
+      className="border-t bg-gradient-to-r from-[#1e0024] to-[#00151f] border-teal-900 text-white py-10"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
@@ -31,16 +31,16 @@ const Footer = () => {
               stylish cars for your little ones.
             </p>
             <div className="flex items-center space-x-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-purple-600 hover:text-teal-500">
                 <FaFacebook size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-purple-600 hover:text-teal-500">
                 <FaInstagram size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-purple-600 hover:text-teal-500">
                 <FaTwitter size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="#" className="text-purple-600 hover:text-teal-500">
                 <FaPinterest size={24} />
               </a>
             </div>

@@ -16,15 +16,20 @@ const App = () => {
   }, []);
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div
+      className="bg-gradient-to-r from-[#1e0024] to-[#00151f]"
+      style={{ maxWidth: '1200px', margin: '0 auto' }}
+    >
       <Navbar></Navbar>
       <div className="md:min-h-[calc(100vh-360px)] bg-gray-900 text-gray-400 py-10">
         {isLoading ? (
           <div className="flex mt-16 justify-center">
-            <Lottie className='w-32' animationData={spinner} loop={true} />
+            <Lottie className="w-32" animationData={spinner} loop={true} />
           </div>
         ) : (
-          <Outlet />
+          <div className="bg-gradient-to-r from-[#0a000d] to-[#00090e]">
+            <Outlet></Outlet>
+          </div>
         )}
       </div>
       <Footer></Footer>

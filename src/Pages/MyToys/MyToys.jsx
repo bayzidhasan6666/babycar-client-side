@@ -93,7 +93,7 @@ const MyToys = () => {
   const pageCount = Math.ceil(myToys.length / itemsPerPage);
 
   return (
-    <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
+    <div className=" text-gray-400 min-h-screen p-8">
       {isLoading ? (
         <div className="flex mt-16 justify-center">
           <Lottie className="w-32" animationData={spinner} loop={true} />

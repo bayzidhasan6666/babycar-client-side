@@ -73,7 +73,7 @@ const AllToys = () => {
   return (
     <div
       data-aos="fade-down"
-      className="bg-gray-900 text-gray-400 min-h-screen p-8"
+      className=" text-gray-400 min-h-screen p-8"
     >
       <div className="text-center">
         <h1

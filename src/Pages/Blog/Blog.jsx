@@ -5,10 +5,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Lottie from 'lottie-react';
 import spinner from '../../assets/97111-loading-spinner-dots.json';
+import useTitle from '../../PageTitle/useTitle';
 
 const Blog = () => {
   const [isLoading, setIsLoading] = useState(true);
-
+  useTitle('Blog Page');
   useEffect(() => {
     AOS.init();
   }, []);
