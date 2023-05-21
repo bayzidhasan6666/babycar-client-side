@@ -19,24 +19,39 @@ const UpdateToy = () => {
       description,
     };
     console.log(updateToyData);
-    // send data to the server
-    fetch(
-      `https://assignment-11-server-side-murex.vercel.app/updateToy/${toy._id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateToyData),
+
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://assignment-11-server-side-murex.vercel.app/updateToy/${toy._id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updateToyData),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+              Swal.fire('Success!', 'Toy Updated Successfully!', 'success');
+            } else {
+              Swal.fire('Please Add Some Changes', '', 'info');
+            }
+          })
+          .catch((error) => console.log(error));
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          Swal.fire('Success!', 'Toy Updated Successfully!', 'success');
-        }
-      });
+    });
   };
 
   return (
@@ -58,7 +73,6 @@ const UpdateToy = () => {
                 name="price"
                 type="number"
                 autoComplete="off"
-                defaultValue={toy.price}
                 onChange={(e) => setPrice(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Price"
@@ -73,7 +87,6 @@ const UpdateToy = () => {
                 name="quantity"
                 type="number"
                 autoComplete="off"
-                defaultValue={toy.quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Available Quantity"
@@ -88,7 +101,6 @@ const UpdateToy = () => {
                 name="description"
                 rows="4"
                 autoComplete="off"
-                defaultValue={toy.description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
                 placeholder="Detail Description"

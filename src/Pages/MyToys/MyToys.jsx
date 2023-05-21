@@ -6,10 +6,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import Pagination from 'react-paginate'; // Import the pagination component library
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0); // Current page number
+  const [itemsPerPage] = useState(10); // Number of items to display per page
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -17,14 +20,21 @@ const MyToys = () => {
 
   useEffect(() => {
     AOS.init();
-    fetch(url)
+    fetchData();
+  }, [sortOrder, searchQuery, currentPage]); // Include currentPage as a dependency for the useEffect
+
+  const fetchData = () => {
+    const offset = currentPage * itemsPerPage; // Calculate the offset based on current page
+    const limit = itemsPerPage; // Set the limit to itemsPerPage
+
+    fetch(`${url}?offset=${offset}&limit=${limit}`) // Update the API URL with pagination parameters
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
         console.log(data);
       })
       .catch((error) => console.log(error));
-  }, [sortOrder, searchQuery, user]);
+  };
 
   useEffect(() => {
     // Filter toys based on search query
@@ -32,8 +42,12 @@ const MyToys = () => {
       const name = toy.name ? toy.name.toLowerCase() : '';
       return name.includes(searchQuery.toLowerCase());
     });
-    setMyToys(filtered);
-  }, [searchQuery]);
+    // Sort the filtered array based on the sort order
+    const sorted = filtered.sort((a, b) => {
+      return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
+    });
+    setMyToys(sorted);
+  }, [searchQuery, sortOrder]);
 
   const handleSortChange = () => {
     const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
@@ -43,8 +57,6 @@ const MyToys = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
-
-  useTitle('My Toys');
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -68,14 +80,23 @@ const MyToys = () => {
             console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire('Deleted!', 'Your Toy has been deleted.', 'success');
-              const remaining = myToys.filter((toy) => toy._id !== id);
-              setMyToys(remaining);
+              fetchData(); // Fetch the updated data after deleting a toy
             }
           })
           .catch((error) => console.log(error));
       }
     });
   };
+
+  // Handle page change event
+  const handlePageChange = (selectedPage) => {
+    setCurrentPage(selectedPage.selected);
+  };
+
+  useTitle('My Toys');
+
+  // Calculate the total number of pages
+  const pageCount = Math.ceil(myToys.length / itemsPerPage);
 
   return (
     <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
@@ -130,42 +151,60 @@ const MyToys = () => {
           </tr>
         </thead>
         <tbody>
-          {myToys.map((toy) => (
-            <tr key={toy._id}>
-              <td className="border-b border-teal-600 py-2">
-                {toy.sellerName ? toy.sellerName : 'N/A'}
-              </td>
-              <td className="border-b border-teal-600 py-2">{toy.name}</td>
-              <td className="border-b border-teal-600 py-2">
-                {toy.subcategory}
-              </td>
-              <td className="border-b border-teal-600 py-2">${toy.price}</td>
-              <td className="border-b border-teal-600 py-2">{toy.quantity}</td>
-              <td className="border-b border-teal-600 py-2">
-                <Link to={`/allToys/${toy._id}`}>
-                  <button className="text-teal-500 border border-teal-500 px-2">
-                    View Details
-                  </button>
-                </Link>
-              </td>
-              <td className="border-b border-teal-600 py-2">
-                <Link to={`/updateToy/${toy._id}`}>
-                  <button className="text-emerald-500 mr-2">
-                    <FaEdit />
-                  </button>
-                </Link>
+          {myToys
+            .slice(
+              currentPage * itemsPerPage,
+              currentPage * itemsPerPage + itemsPerPage
+            )
+            .map((toy) => (
+              <tr key={toy._id}>
+                <td className="border-b border-teal-600 py-2">
+                  {toy.sellerName ? toy.sellerName : 'N/A'}
+                </td>
+                <td className="border-b border-teal-600 py-2">{toy.name}</td>
+                <td className="border-b border-teal-600 py-2">
+                  {toy.subcategory}
+                </td>
+                <td className="border-b border-teal-600 py-2">${toy.price}</td>
+                <td className="border-b border-teal-600 py-2">
+                  {toy.quantity}
+                </td>
+                <td className="border-b border-teal-600 py-2">
+                  <Link to={`/allToys/${toy._id}`}>
+                    <button className="text-teal-500 border border-teal-500 px-2">
+                      View Details
+                    </button>
+                  </Link>
+                </td>
+                <td className="border-b border-teal-600 py-2">
+                  <Link to={`/updateToy/${toy._id}`}>
+                    <button className="text-emerald-500 mr-2">
+                      <FaEdit />
+                    </button>
+                  </Link>
 
-                <button
-                  onClick={() => handleDelete(toy._id)}
-                  className="text-red-500"
-                >
-                  <FaTrash />
-                </button>
-              </td>
-            </tr>
-          ))}
+                  <button
+                    onClick={() => handleDelete(toy._id)}
+                    className="text-red-500"
+                  >
+                    <FaTrash />
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
+      <div className="flex justify-center mt-4">
+        <Pagination
+          pageCount={pageCount}
+          onPageChange={handlePageChange}
+          containerClassName="flex justify-center"
+          pageClassName="mx-1"
+          activeClassName="text-teal-500"
+          previousLabel="<"
+          nextLabel=">"
+        />
+      </div>
     </div>
   );
 };

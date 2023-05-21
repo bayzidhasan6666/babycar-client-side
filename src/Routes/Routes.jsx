@@ -42,11 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/carDetails',
-        element: (
-          <PrivateRoute>
-            <SingleCarDetails></SingleCarDetails>
-          </PrivateRoute>
-        ),
+        element: <SingleCarDetails></SingleCarDetails>,
       },
       {
         path: '/addToy',

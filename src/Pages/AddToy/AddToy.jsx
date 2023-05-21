@@ -111,13 +111,14 @@ const AddToy = () => {
                 id="sellerEmail"
                 name="sellerEmail"
                 type="email"
+                required
                 autoComplete="off"
-                defaultValue={user.email}
                 onChange={(e) => setSellerEmail(e.target.value)}
                 className="appearance-none rounded-none relative block bg-gray-900 w-full px-3 py-2 border border-teal-300 placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm"
-                placeholder="Seller Email"
+                placeholder="Seller Email (Seller Email & User Email Must Be Same) "
               />
             </div>
+
             <div>
               <label htmlFor="subcategory" className="sr-only">
                 Sub-category

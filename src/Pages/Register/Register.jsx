@@ -71,7 +71,7 @@ const Register = () => {
         const loggedInUser = result.user;
         // console.log(loggedInUser);
         setUser(loggedInUser);
-        toast.success('User logged in successful');
+        toast.success('User has been created  successfully');
         navigate(from);
       })
       .catch((error) => {

@@ -1,8 +1,10 @@
 import React from 'react';
 import useTitle from '../../PageTitle/useTitle';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 
 const ViewDetails = () => {
+  const navigate = useNavigate();
+
   const car = useLoaderData();
   const {
     name,
@@ -17,6 +19,9 @@ const ViewDetails = () => {
   } = car;
 
   useTitle('Details View');
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
@@ -47,10 +52,10 @@ const ViewDetails = () => {
       </div>
       <div className="flex items-center justify-center mt-4">
         <Link
-          to="/allToys"
+          onClick={goBack}
           className="text-sm border border-purple-500 px-3 py-1 font-medium text-purple-500 hover:border-teal-500 hover:text-teal-500"
         >
-          Go to All Toys
+          Go Back
         </Link>
       </div>
     </div>
