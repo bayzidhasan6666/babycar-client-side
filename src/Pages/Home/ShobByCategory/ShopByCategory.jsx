@@ -62,7 +62,7 @@ const ShopByCategory = () => {
               Category - Rare Cars
             </h3>
 
-            <div className="grid grid-cols-2   gap-4 mt-4">
+            <div className="grid md:grid-cols-2   gap-4 mt-4">
               {allToys.length > 0 &&
                 allToys[0].rareCars.map((toy, index) => (
                   <div
@@ -96,7 +96,7 @@ const ShopByCategory = () => {
             <h3 className="text-teal-400 font-mono ml-4">
               Category - Super Cars
             </h3>
-            <div className="grid grid-cols-2  gap-4 mt-4">
+            <div className="grid md:grid-cols-2  gap-4 mt-4">
               {allToys.length > 1 &&
                 allToys[1].superCars.map((toy, index) => (
                   <div
@@ -128,7 +128,7 @@ const ShopByCategory = () => {
             <h3 className="text-teal-400 font-mono ml-4">
               Category - Sports Cars
             </h3>
-            <div className="grid grid-cols-2  gap-4 mt-4">
+            <div className="grid  md:grid-cols-2  gap-4 mt-4">
               {allToys.length >= 2 &&
                 allToys[2].sportsCars.map((toy, index) => (
                   <div
