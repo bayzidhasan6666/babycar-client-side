@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div
-      className="bg-gradient-to-r from-[#1e0024] to-[#00151f]"
+      className="bg-gradient-to-r from-[#1e0024] to-[#00151f] "
       style={{ maxWidth: '1200px', margin: '0 auto' }}
     >
       <Navbar></Navbar>

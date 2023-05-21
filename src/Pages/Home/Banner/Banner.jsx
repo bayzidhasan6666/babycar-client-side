@@ -30,17 +30,17 @@ const Banner = () => {
               alt="Banner 1"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-3 w-64 md:w-96 mx-auto">
-              <h2 className="font-bold text-4xl text-purple-600">
+              <h2 className="font-bold text-4xl text-[#f6d9d9fc]">
                 Explore Our Baby Car Collection
               </h2>
-              <p className="text-sm text-teal-500 font-semibold mb-4">
+              <p className="text-sm text-white font-semibold mb-4">
                 Find the perfect baby car for your little one.
               </p>
               <div className="">
                 {' '}
                 <Link
                   to="/"
-                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
+                  className=" text-white font-serif hover:text-purple-500 hover:bg-white   bg-purple-600 px-3 py-2"
                 >
                   Learn More
                 </Link>
@@ -56,17 +56,17 @@ const Banner = () => {
               alt="Banner 2"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-3 w-64 md:w-96 mx-auto">
-              <h2 className="font-bold text-4xl text-purple-600">
+              <h2 className="font-bold text-4xl text-[#f6d9d9fc]">
                 Discover Fun and Safe Baby Cars
               </h2>
-              <p className="text-sm text-teal-500 font-semibold mb-4">
+              <p className="text-sm text-white font-semibold mb-4">
                 Our baby cars are designed with your child's safety in mind.
               </p>
               <div className="">
                 {' '}
                 <Link
                   to="/"
-                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
+                  className=" text-white font-serif hover:text-purple-500 hover:bg-white   bg-purple-600 px-3 py-2"
                 >
                   Learn More
                 </Link>
@@ -82,10 +82,10 @@ const Banner = () => {
               alt="Banner 3"
             />
             <div className="carousel-item-content ml-10 top-20 absolute space-y-3 w-64 md:w-96 mx-auto">
-              <h2 className="font-bold text-4xl text-purple-600">
+              <h2 className="font-bold text-4xl text-[#f6d9d9fc]">
                 Quality Baby Cars for Unforgettable Adventures
               </h2>
-              <p className="text-sm text-teal-500 font-semibold mb-4">
+              <p className="text-sm text-white font-semibold mb-4">
                 Let your child's imagination soar with our premium baby car
                 collection.
               </p>
@@ -93,7 +93,7 @@ const Banner = () => {
                 {' '}
                 <Link
                   to="/"
-                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
+                  className=" text-white font-serif hover:text-purple-500 hover:bg-white   bg-purple-600 px-3 py-2"
                 >
                   Learn More
                 </Link>
