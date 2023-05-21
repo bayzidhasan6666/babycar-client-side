@@ -40,7 +40,7 @@ const Banner = () => {
                 {' '}
                 <Link
                   to="/"
-                  className="border text-purple-500 font-serif hover:text-white hover:bg-purple-700  border-purple-500 px-3 py-1"
+                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
                 >
                   Learn More
                 </Link>
@@ -66,7 +66,7 @@ const Banner = () => {
                 {' '}
                 <Link
                   to="/"
-                  className="border text-purple-500 font-serif hover:text-white hover:bg-purple-700  border-purple-500 px-3 py-1"
+                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
                 >
                   Learn More
                 </Link>
@@ -93,7 +93,7 @@ const Banner = () => {
                 {' '}
                 <Link
                   to="/"
-                  className="border text-purple-500 font-serif hover:text-white hover:bg-purple-700  border-purple-500 px-3 py-1"
+                  className="border text-white font-serif hover:text-purple-500   border-purple-500 px-3 py-1"
                 >
                   Learn More
                 </Link>
