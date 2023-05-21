@@ -24,14 +24,14 @@ const ViewDetails = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-gray-400 min-h-screen p-8">
+    <div className=" text-gray-400 min-h-screen p-8">
       <div className="text-center">
         <h1 className="text-2xl text-purple-600 font-semibold mb-4">
           {name}-Details
         </h1>
       </div>
       <div className="max-w-lg mx-auto">
-        <div className="border border-purple-600 rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-gradient-to-r from-[#1e0024] to-[#00151f]  rounded-lg shadow-lg overflow-hidden">
           <img
             src={pictureUrl}
             alt={name}

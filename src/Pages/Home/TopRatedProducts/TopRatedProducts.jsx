@@ -81,7 +81,7 @@ const TopRatedProducts = () => {
         {visibleProducts.map((product, index) => (
           <div
             key={index}
-            className="border border-teal-500 rounded p-4"
+            className="bg-gradient-to-r from-[#1e0024] to-[#00151f]  rounded p-4"
           >
             <img
               data-aos="fade-left"

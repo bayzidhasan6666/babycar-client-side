@@ -19,8 +19,8 @@ const SingleCarDetails = () => {
   useTitle(`${toy && toy.name}`);
 
   return (
-    <div className="flex items-center justify-center bg-gray-900">
-      <div className="border border-purple-700 rounded-lg shadow-lg p-8 max-w-md text-white">
+    <div className="flex items-center justify-center ">
+      <div className="bg-gradient-to-r from-[#1e0024] to-[#00151f]  rounded-lg shadow-lg p-8 max-w-md text-white">
         <h2 className="text-lg text-teal-400 mb-2">Category: {category}</h2>
         <h3 className="text-lg text-purple-500 mb-2">
           Name: {toy && toy.name}

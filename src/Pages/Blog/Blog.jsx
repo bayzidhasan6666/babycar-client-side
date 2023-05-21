@@ -84,7 +84,7 @@ const Blog = () => {
               key={index}
               data-aos="fade-left"
               data-aos-delay={index * 100}
-              className="border border-purple-600 rounded p-6 mb-6"
+              className="bg-gradient-to-r from-[#1e0024] to-[#00151f] md:w-[95%] mx-auto rounded-xl p-6 mb-6"
             >
               <div
                 className="flex justify-between items-center cursor-pointer"

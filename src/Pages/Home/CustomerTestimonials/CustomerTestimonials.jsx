@@ -46,7 +46,7 @@ const CustomerTestimonials = () => {
           <div
             data-aos="fade-up"
             key={testimonial.id}
-            className="max-w-xl border border-purple-500 rounded p-6 mb-4"
+            className="max-w-xl  bg-gradient-to-r from-[#1e0024] to-[#00151f] rounded-xl p-6 mb-4"
           >
             <div className="flex items-center mb-4">
               <img
@@ -61,7 +61,7 @@ const CustomerTestimonials = () => {
                 <p className="text-purple-500">{testimonial.role}</p>
               </div>
             </div>
-            <div className="text-purple-600">
+            <div className="text-gray-400">
               <FaQuoteLeft className="text-purple-500 text-3xl mb-4" />
               <p>{testimonial.quote}</p>
             </div>

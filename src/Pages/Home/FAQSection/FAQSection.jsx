@@ -36,7 +36,7 @@ const FAQSection = () => {
     <section className="py-8">
       <h2
         data-aos="fade-up"
-        className="text-2xl text-center text-teal-500 font-semibold mb-4"
+        className="text-2xl text-center text-[#ffa5a5] font-semibold mb-4"
       >
         Frequently Asked Questions?
       </h2>
@@ -46,7 +46,7 @@ const FAQSection = () => {
             key={index}
             data-aos="fade-up"
             data-aos-delay={index * 100}
-            className="border border-teal-500 rounded p-4 mb-4"
+            className="bg-gradient-to-r from-[#1e0024] to-[#00151f] rounded p-4 mb-4"
           >
             <div
               className="flex justify-between items-center cursor-pointer"
@@ -62,7 +62,7 @@ const FAQSection = () => {
               </div>
             </div>
             {activeIndex === index && (
-              <p className="mt-2 text-gray-700">{faq.answer}</p>
+              <p className="mt-2 text-teal-500">{faq.answer}</p>
             )}
           </div>
         ))}

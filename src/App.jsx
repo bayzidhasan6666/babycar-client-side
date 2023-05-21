@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div
-      className="bg-gradient-to-r from-[#1e0024] to-[#00151f] w-[96%]"
+      className="bg-gradient-to-r from-[#1e0024] to-[#00151f] w-[95%]"
       style={{ maxWidth: '1200px', margin: '0 auto' }}
     >
       <Navbar></Navbar>
@@ -27,7 +27,7 @@ const App = () => {
             <Lottie className="w-32" animationData={spinner} loop={true} />
           </div>
         ) : (
-          <div className="bg-gradient-to-r from-[#0a000d] to-[#00090e]">
+          <div className="bg-gradient-to-r from-[#0b000e] to-[#000b11]">
             <Outlet></Outlet>
           </div>
         )}
