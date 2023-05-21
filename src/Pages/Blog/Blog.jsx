@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { FaAcquisitionsIncorporated, FaQuestion } from 'react-icons/fa';
+import { FaQuestion } from 'react-icons/fa';
 import { FiDatabase } from 'react-icons/fi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Lottie from 'lottie-react';
+import spinner from '../../assets/97111-loading-spinner-dots.json';
 
 const Blog = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     AOS.init();
+  }, []);
+
+  useEffect(() => {
+    // Simulating loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }, []);
 
   const faqData = [
@@ -61,48 +72,54 @@ const Blog = () => {
       >
         Assignment Required Questions <FaQuestion></FaQuestion>
       </h2>
-      <div className="container mx-auto">
-        {faqData.map((faq, index) => (
-          <div
-            key={index}
-            data-aos="fade-left"
-            data-aos-delay={index * 100}
-            className="border border-purple-600 rounded p-6 mb-6"
-          >
+      {isLoading ? (
+        <div className="flex justify-center mt-8">
+          <Lottie className="w-32" animationData={spinner} loop={true} />
+        </div>
+      ) : (
+        <div className="container mx-auto">
+          {faqData.map((faq, index) => (
             <div
-              className="flex justify-between items-center cursor-pointer"
-              onClick={() => toggleAccordion(index)}
+              key={index}
+              data-aos="fade-left"
+              data-aos-delay={index * 100}
+              className="border border-purple-600 rounded p-6 mb-6"
             >
-              <h3 className="text-xl text-purple-500 items-center flex font-semibold mb-2">
-                {faq.question}
-                {faq.icon}
-              </h3>
-              <button
-                className={`btn border   ${
-                  activeIndex === index
-                    ? 'text-teal-500 border-teal-500'
-                    : 'text-purple-500 border-purple-500'
-                }`}
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleAccordion(index)}
               >
-                {activeIndex === index ? (
-                  <FiDatabase className="text-teal-500" />
-                ) : (
-                  <FiDatabase className="text-purple-500" />
-                )}
-              </button>
-            </div>
-            {activeIndex === index && (
-              <div className="text-teal-500 mb-4">
-                <p>{faq.answer}</p>
+                <h3 className="text-xl text-purple-500 items-center flex font-semibold mb-2">
+                  {faq.question}
+                  {faq.icon}
+                </h3>
+                <button
+                  className={`btn border   ${
+                    activeIndex === index
+                      ? 'text-teal-500 border-teal-500'
+                      : 'text-purple-500 border-purple-500'
+                  }`}
+                >
+                  {activeIndex === index ? (
+                    <FiDatabase className="text-teal-500" />
+                  ) : (
+                    <FiDatabase className="text-purple-500" />
+                  )}
+                </button>
               </div>
-            )}
-            <div className="flex items-center text-teal-500">
-              <FiDatabase className="mr-1 text-purple-500" />
-              <span>{faq.database}</span>
+              {activeIndex === index && (
+                <div className="text-teal-500 mb-4">
+                  <p>{faq.answer}</p>
+                </div>
+              )}
+              <div className="flex items-center text-teal-500">
+                <FiDatabase className="mr-1 text-purple-500" />
+                <span>{faq.database}</span>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

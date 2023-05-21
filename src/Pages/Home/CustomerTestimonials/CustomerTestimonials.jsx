@@ -46,7 +46,7 @@ const CustomerTestimonials = () => {
           <div
             data-aos="fade-up"
             key={testimonial.id}
-            className="max-w-lg border border-purple-500 rounded p-6 mb-4"
+            className="max-w-xl border border-purple-500 rounded p-6 mb-4"
           >
             <div className="flex items-center mb-4">
               <img

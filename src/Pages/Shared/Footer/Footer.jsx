@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer
       data-aos="fade-up"
-      className="border-t border-teal-900 text-white py-10"
+      className="border-t bg-gradient-to-r from-purple-900 to-teal-900 border-teal-900 text-white py-10"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">

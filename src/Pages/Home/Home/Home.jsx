@@ -7,9 +7,20 @@ import TopRatedProducts from '../TopRatedProducts/TopRatedProducts';
 import CustomerTestimonials from '../CustomerTestimonials/CustomerTestimonials';
 import Subscribe from '../Subscribe/Subscribe';
 import FAQSection from '../FAQSection/FAQSection';
+import Lottie from 'lottie-react';
+import spinner from '../../../assets/97111-loading-spinner-dots.json';
 
-const Home = () => {
+const Home = ({ isLoading }) => {
   useTitle('Home Page');
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-16">
+        <Lottie className="w-32" animationData={spinner} loop={true} />
+      </div>
+    );
+  }
+
   return (
     <div>
       <div>

@@ -25,7 +25,7 @@ const Subscribe = () => {
   return (
     <section
       data-aos="fade-left"
-      className="py-8 border border-purple-600 rounded"
+      className="py-8 border  border-purple-600 rounded"
     >
       <h2 className="text-2xl text-center text-purple-600 font-semibold mb-4">
         Subscribe for Offer

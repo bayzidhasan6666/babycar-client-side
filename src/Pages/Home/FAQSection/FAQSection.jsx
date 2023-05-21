@@ -40,7 +40,7 @@ const FAQSection = () => {
       >
         Frequently Asked Questions?
       </h2>
-      <div className="max-w-md mx-auto">
+      <div className="max-w-xl mx-auto">
         {faqData.map((faq, index) => (
           <div
             key={index}

@@ -3,11 +3,14 @@ import useTitle from '../../PageTitle/useTitle';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import spinner from '../../assets/97111-loading-spinner-dots.json';
+import Lottie from 'lottie-react';
 
 const AllToys = () => {
   const [allToys, setAllToys] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredToys, setFilteredToys] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Add isLoading state
 
   // pagination start
   const [totalToys, setTotalToys] = useState(0);
@@ -37,11 +40,13 @@ const AllToys = () => {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true); // Set isLoading to true before fetching data
       const response = await fetch(
         `https://assignment-11-server-side-murex.vercel.app/addToys?page=${currentPage}&limit=${itemsPerPage}`
       );
       const data = await response.json();
       setAllToys(data);
+      setIsLoading(false); // Set isLoading to false after fetching data
     }
     fetchData();
   }, [currentPage, itemsPerPage]);
@@ -93,49 +98,62 @@ const AllToys = () => {
           className="border border-teal-500 rounded px-2 py-1 bg-gray-800"
         />
       </div>
-      <table
-        className="min-w-full bg-opacity-10 border border-teal-500"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="1000"
-      >
-        <thead>
-          <tr className="text-purple-500">
-            <th className="border-b border-teal-500 py-2">Seller Name</th>
-            <th className="border-b border-teal-500 py-2">Car Name</th>
-            <th className="border-b border-teal-500 py-2">Sub-category</th>
-            <th className="border-b border-teal-500 py-2">Price</th>
-            <th className="border-b border-teal-500 py-2">
-              Available Quantity
-            </th>
-            <th className="border-b border-teal-500 py-2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredToys.map((toy) => (
-            <tr key={toy._id}>
-              <td className="border-b border-purple-600 py-2">
-                {toy.sellerName ? toy.sellerName : 'N/A'}
-              </td>
-              <td className="border-b border-purple-600 py-2">{toy.name}</td>
-              <td className="border-b border-purple-600 py-2">
-                {toy.subcategory}
-              </td>
-              <td className="border-b border-purple-600 py-2">${toy.price}</td>
-              <td className="border-b border-purple-600 py-2">
-                {toy.quantity}
-              </td>
-              <td className="border-b border-purple-600 py-2">
-                <Link to={`/allToys/${toy._id}`}>
-                  <button className="text-purple-500 border border-purple-500 px-2">
-                    View Details
-                  </button>
-                </Link>
-              </td>
+
+      {isLoading ? (
+        // Show loading spinner while data is loading
+        <div className="flex justify-center mt-8">
+          <div className=" mt-20">
+            <Lottie className='w-32' animationData={spinner} loop={true} />
+          </div>
+        </div>
+      ) : (
+        <table
+          className="min-w-full bg-opacity-10 border border-teal-500"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="1000"
+        >
+          <thead>
+            <tr className="text-purple-500">
+              <th className="border-b border-teal-500 py-2">Seller Name</th>
+              <th className="border-b border-teal-500 py-2">Car Name</th>
+              <th className="border-b border-teal-500 py-2">Sub-category</th>
+              <th className="border-b border-teal-500 py-2">Price</th>
+              <th className="border-b border-teal-500 py-2">
+                Available Quantity
+              </th>
+              <th className="border-b border-teal-500 py-2"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredToys.map((toy) => (
+              <tr key={toy._id}>
+                <td className="border-b border-purple-600 py-2">
+                  {toy.sellerName ? toy.sellerName : 'N/A'}
+                </td>
+                <td className="border-b border-purple-600 py-2">{toy.name}</td>
+                <td className="border-b border-purple-600 py-2">
+                  {toy.subcategory}
+                </td>
+                <td className="border-b border-purple-600 py-2">
+                  ${toy.price}
+                </td>
+                <td className="border-b border-purple-600 py-2">
+                  {toy.quantity}
+                </td>
+                <td className="border-b border-purple-600 py-2">
+                  <Link to={`/allToys/${toy._id}`}>
+                    <button className="text-purple-500 border border-purple-500 px-2">
+                      View Details
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
       <div
         className="mx-auto flex w-fit space-x-2"
         data-aos="fade-up"
